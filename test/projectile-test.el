@@ -2038,12 +2038,12 @@ projectile-process-current-project-buffers-current to have similar behaviour"
           (projectile-project-root "/a/random/path"))
       (projectile--run-project-cmd "foo" command-map)
       (projectile--run-project-cmd "foo" command-map)
-      (projectile--run-project-cmd "foo" command-map)
       (projectile--run-project-cmd "bar" command-map)
+      (projectile--run-project-cmd "foo" command-map)
       (expect 'projectile-run-compilation :to-have-been-called-times 4)
       (expect (ring-elements
                (projectile--get-command-history projectile-project-root))
-              :to-equal '("bar" "foo")))))
+              :to-equal '("foo" "bar")))))
 
 ;; A bunch of tests that make sure Projectile commands handle
 ;; gracefully the case of being run outside of a project.

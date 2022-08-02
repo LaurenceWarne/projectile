@@ -4888,8 +4888,10 @@ The command actually run is returned."
     (when command-map
       (puthash default-directory command command-map)
       (let ((hist (projectile--get-command-history project-root)))
-        (unless (string= (car-safe (ring-elements hist)) command)
-          (ring-insert hist command))))
+        (cl-loop for index = (ring-member hist command)
+                 until (null index)
+                 do (ring-remove hist index))
+        (ring-insert hist command)))
     (when save-buffers
       (save-some-buffers (not compilation-ask-about-save)
                          (lambda ()
