@@ -5881,7 +5881,6 @@ Otherwise behave as if called interactively.
   (add-hook 'savehist-mode-hook
             (lambda()
               (add-to-list 'savehist-additional-variables 'projectile-project-command-history))))
-
 ;;;###autoload
 (define-obsolete-function-alias 'projectile-global-mode 'projectile-mode "1.0")
 
